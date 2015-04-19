@@ -54,7 +54,7 @@ def peter_select_sort(nums):
 ######## Insert Sort ##########################################################
 
 
-# TODO: Write a Link class that keeps its value an optional next link.
+# TODO: Write a Link class that keeps its value and an optional next link.
 
 
 def chris_insert_sort(values):
