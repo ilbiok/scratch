@@ -54,8 +54,10 @@ def peter_select_sort(nums):
 ######## Insert Sort ##########################################################
 
 
-# TODO: Write a Link class that keeps its value and an optional next link.
-
+class LinkedList(object):
+    def __init__(self, value, nextval):
+        self.value = value
+        self.nextval = nextval
 
 def chris_insert_sort(values):
     # TODO: Test for empty input.
