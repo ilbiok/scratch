@@ -54,10 +54,11 @@ def peter_select_sort(nums):
 ######## Insert Sort ##########################################################
 
 
-class LinkedList(object):
-    def __init__(self, value, nextval):
+class Link(object):
+    def __init__(self, value, nextval=None):
         self.value = value
         self.nextval = nextval
+
 
 def chris_insert_sort(values):
     # TODO: Test for empty input.
