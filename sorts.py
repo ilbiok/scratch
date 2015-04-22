@@ -68,6 +68,7 @@ def chris_insert_sort(values):
 
 
 def peter_insert_sort(values):
+    newlist = []
     if len(values) <= 1:
         return values
     else:
@@ -89,9 +90,11 @@ def peter_insert_sort(values):
                         modified = True
                     else:
                        current = current.nextval
-        return head.nextval.value
-    # TODO: Copy sorted linked list into Python list.
-    pass
+        current = head
+        while current != None:
+            newlist.append(current.value)
+            current = current.nextval
+    return newlist
 
 ######## Test Sort Functions ##################################################
 
