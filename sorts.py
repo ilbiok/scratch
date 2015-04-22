@@ -68,8 +68,28 @@ def chris_insert_sort(values):
 
 
 def peter_insert_sort(values):
-    # TODO: Test for empty input.
-    # TODO: Build sorted linked list from input using Link class.
+    if len(values) <= 1:
+        return values
+    else:
+        head = Link(values[0], None)
+        current = head
+        for num in values[1:]:
+            modified = False
+            if num < head.value:
+                head = Link(num, head)
+                current = head
+            else:
+                while not modified:
+                    if current.nextval == None:
+                        current.nextval = Link(num, current.nextval)
+                        modified = True
+                    elif num < current.nextval.value:
+                        current.nextval = Link(num, current.nextval)
+                        current = head
+                        modified = True
+                    else:
+                       current = current.nextval
+        return head.nextval.value
     # TODO: Copy sorted linked list into Python list.
     pass
 
