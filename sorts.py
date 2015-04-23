@@ -43,12 +43,9 @@ def chris_select_sort(values):
 
 def peter_select_sort(nums):
     newlist = []
-    if len(nums) <= 1:
-        return nums
-    else:
-        while nums:
-            newlist.append(min(nums))
-            nums.remove(min(nums))
+    while nums:
+        newlist.append(min(nums))
+        nums.remove(min(nums))
     return newlist
 
 ######## Insert Sort ##########################################################
@@ -68,32 +65,28 @@ def chris_insert_sort(values):
 
 
 def peter_insert_sort(values):
-    newlist = []
-    if len(values) <= 1:
+    if not values:
         return values
-    else:
-        head = Link(values[0], None)
+    head = Link(values[0])
+    for num in values[1:]:
         current = head
-        for num in values[1:]:
-            modified = False
-            if num < head.value:
-                head = Link(num, head)
-                current = head
-            else:
-                while not modified:
-                    if not current.nextval:
-                        current.nextval = Link(num, current.nextval)
-                        modified = True
-                    elif num < current.nextval.value:
-                        current.nextval = Link(num, current.nextval)
-                        current = head
-                        modified = True
-                    else:
-                       current = current.nextval
-        current = head
-        while current:
-            newlist.append(current.value)
-            current = current.nextval
+        if num < head.value:
+            head = Link(num, head)
+        else:
+            while not True:
+                if not current.nextval:
+                    current.nextval = Link(num, current.nextval)
+                    break
+                elif num < current.nextval.value:
+                    current.nextval = Link(num, current.nextval)
+                    break
+                else:
+                   current = current.nextval
+    current = head
+    newlist = []
+    while current:
+        newlist.append(current.value)
+        current = current.nextval
     return newlist
 
 ######## Test Sort Functions ##################################################
@@ -131,3 +124,4 @@ if __name__ == '__main__':
             print('  Pass!')
         except Exception as exception:
             print('  Fail! {}'.format(exception))
+
