@@ -61,10 +61,28 @@ class Link(object):
 
 
 def chris_insert_sort(values):
-    # TODO: Test for empty input.
-    # TODO: Build sorted linked list from input using Link class.
-    # TODO: Copy sorted linked list into Python list.
-    pass
+    # Test for empty input.
+    if not values:
+        return values
+    # Build sorted linked list from input using Link class.
+    head = Link(values[0])
+    for value in values[1:]:
+        if value < head.value:
+            head = Link(value, head)
+        else:
+            current = head
+            while True:
+                if current.nextval is None or value < current.nextval.value:
+                    current.nextval = Link(value, current.nextval)
+                    break
+                current = current.nextval
+    # Copy sorted linked list into Python list.
+    values = []
+    current = head
+    while current:
+        values.append(current.value)
+        current = current.nextval
+    return values
 
 
 def peter_insert_sort(values):
