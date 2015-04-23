@@ -43,12 +43,9 @@ def chris_select_sort(values):
 
 def peter_select_sort(nums):
     newlist = []
-    while len(newlist) < nums:
+    while nums:
         newlist.append(min(nums))
         nums.remove(min(nums))
-        if len(nums) == 0:
-            nums.append(newlist)
-            break
     return newlist
 
 ######## Insert Sort ##########################################################
@@ -86,10 +83,29 @@ def chris_insert_sort(values):
 
 
 def peter_insert_sort(values):
-    # TODO: Test for empty input.
-    # TODO: Build sorted linked list from input using Link class.
-    # TODO: Copy sorted linked list into Python list.
-    pass
+    if not values:
+        return values
+    head = Link(values[0])
+    for num in values[1:]:
+        current = head
+        if num < head.value:
+            head = Link(num, head)
+        else:
+            while not True:
+                if not current.nextval:
+                    current.nextval = Link(num, current.nextval)
+                    break
+                elif num < current.nextval.value:
+                    current.nextval = Link(num, current.nextval)
+                    break
+                else:
+                   current = current.nextval
+    current = head
+    newlist = []
+    while current:
+        newlist.append(current.value)
+        current = current.nextval
+    return newlist
 
 ######## Test Sort Functions ##################################################
 
@@ -126,3 +142,4 @@ if __name__ == '__main__':
             print('  Pass!')
         except Exception as exception:
             print('  Fail! {}'.format(exception))
+
