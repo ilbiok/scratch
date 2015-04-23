@@ -43,12 +43,12 @@ def chris_select_sort(values):
 
 def peter_select_sort(nums):
     newlist = []
-    while len(newlist) < nums:
-        newlist.append(min(nums))
-        nums.remove(min(nums))
-        if len(nums) == 0:
-            nums.append(newlist)
-            break
+    if len(nums) <= 1:
+        return nums
+    else:
+        while nums:
+            newlist.append(min(nums))
+            nums.remove(min(nums))
     return newlist
 
 ######## Insert Sort ##########################################################
@@ -81,7 +81,7 @@ def peter_insert_sort(values):
                 current = head
             else:
                 while not modified:
-                    if current.nextval == None:
+                    if not current.nextval:
                         current.nextval = Link(num, current.nextval)
                         modified = True
                     elif num < current.nextval.value:
@@ -91,7 +91,7 @@ def peter_insert_sort(values):
                     else:
                        current = current.nextval
         current = head
-        while current != None:
+        while current:
             newlist.append(current.value)
             current = current.nextval
     return newlist
