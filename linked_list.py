@@ -75,18 +75,30 @@ class LinkedList:
 
     def pop(self):
         '''remove and return last item.'''
-        pass  # TODO
+        current = self.head
+        if current.next == None:
+            return None
+        while current.next.next:
+            current = current.next
+        popped = current.next.value
+        current.next = None
+        return popped
 
     def popfront(self):
         '''remove and return first item.'''
-        pass  # TODO
+        current = self.head
+        if current.next == None:
+            return None
+        popped = current.next.value
+        current.next = current.next.next
+        return popped
 
     def remove(self, value):
         '''
         remove first occurrence of value.
         Raises ValueError if the value is not present.
         '''
-        pass #TODO
+        current = self.head
 
     def getindex(self, index):
         current = self.head
