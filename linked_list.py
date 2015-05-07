@@ -36,13 +36,15 @@ class LinkedList:
     def appendfront(self, value):
         '''append value to front.'''
         current = self.head
-        current.next = _Node(value, current.next)
+        while True:
+            current.next = _Node(value, current.next)
+            break
 
     def clear(self):
         '''remove all values.'''
-        #current = self.head
-        #while current:
-        #pass
+        if self.head.next != None:
+            self.head.next = self.head.next.next
+            clear(self)
 
     def count(self, value):
         '''return number of occurrences of value.'''
@@ -69,7 +71,7 @@ class LinkedList:
             else: 
                 current = current.next
                 count += 1
-        return ValueError
+        raise ValueError('Could not find %r in list' % value)
 
     def pop(self):
         '''remove and return last item.'''
@@ -84,7 +86,19 @@ class LinkedList:
         remove first occurrence of value.
         Raises ValueError if the value is not present.
         '''
-        pass  # TODO
+        pass #TODO
+
+    def getindex(self, index):
+        current = self.head
+        count = 0
+        while count != index:
+            if current.next == None:
+                raise IndexError('List not that long.')
+            else:
+                count += 1
+                current = current.next
+        return current.next.value
+
 
 
 class LinkedListTestCase(unittest.TestCase):
