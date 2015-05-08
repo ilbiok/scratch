@@ -81,7 +81,7 @@ class LinkedList:
         while current.next.next:
             current = current.next
         popped = current.next.value
-        current.next = None
+        current.next = current.next.next
         return popped
 
     def popfront(self):
@@ -99,6 +99,15 @@ class LinkedList:
         Raises ValueError if the value is not present.
         '''
         current = self.head
+        if current.next == None:
+            raise ValueError('List is empty, brah.')
+        while current.next.next:
+            if current.next.value == value:
+                current.next = current.next.next
+                break
+            else:
+                current = current.next
+            raise ValueError('%r not in here, son!' % value)
 
     def getindex(self, index):
         current = self.head
