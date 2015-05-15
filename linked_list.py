@@ -42,9 +42,9 @@ class LinkedList:
 
     def clear(self):
         '''remove all values.'''
-        if self.head.next != None:
-            self.head.next = self.head.next.next
-            clear(self)
+        while self.head.next:
+            if self.head.next != None:
+                self.head.next = self.head.next.next
 
     def count(self, value):
         '''return number of occurrences of value.'''
@@ -110,9 +110,12 @@ class LinkedList:
             raise ValueError('%r not in here, son!' % value)
 
     def getindex(self, index):
+        '''
+        Finds the value of the number at chosen index position
+        '''
         current = self.head
         count = 0
-        while count != index:
+        while count < index:
             if current.next == None:
                 raise IndexError('List not that long.')
             else:
@@ -153,11 +156,46 @@ class LinkedListTestCase(unittest.TestCase):
 
     def test_count(self):
         self.list.append(42)
+        self.list.append(24)
+        self.list.append(24)
         self.assertEqual(1, self.list.count(42))
+        self.assertEqual(2, self.list.count(24))
+        self.assertEqual(0, self.list.count(420))
+        
+    def test_length_2(self):
+        self.list.append(42)
+        self.list.append(24)
+        self.assertEqual(2, len(self.list))
+    
+    def test_index_num(self):
+        self.list.append(42)
+        self.list.append(24)
+        self.assertEqual(42, self.list.getindex(0))
+        self.assertEqual(24, self.list.getindex(1))
+
+    def test_index_num_err(self):
+        self.list.append(42)
+        self.assertRaises(IndexError, lambda: self.list.getindex(3))
+        self.assertRaises(IndexError, lambda: self.list.getindex(1)) #Causing problems when the index is one more than the length
+        
+    def test_number_index(self):
+        self.list.append(42)
+        self.list.append(24)
+        self.assertEqual(0, self.list.index(42))
+        self.assertEqual(1, self.list.index(24))
+
+    def test_number_index_err(self):
+        self.assertRaises(ValueError, lambda: self.list.index(43))
+        
+    def test_clear(self):
+        self.list.append(42)
+        self.list.append(24)
+        self.list.clear
+        self.assertEqual(0, len(self.list))
+        
 
     # TODO: Add more test cases as needed.
 
 
 if __name__ == '__main__':
     unittest.main()
-
